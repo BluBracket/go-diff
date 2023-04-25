@@ -169,7 +169,13 @@ func (h *emptyContentHandler) StartFile(fileDiff *FileDiff) error {
 	h.fileNo++
 	return nil
 }
+func (h *emptyContentHandler) EndFile(fileDiff *FileDiff) error {
+	return nil
+}
 func (h *emptyContentHandler) StartHunk(hunk *Hunk) error {
+	return nil
+}
+func (h *emptyContentHandler) EndHunk(hunk *Hunk) error {
 	return nil
 }
 func (h *emptyContentHandler) HunkLine(hunk *Hunk, line []byte, eol bool) error {
@@ -216,7 +222,6 @@ index aa4de15..7c048ab 100644
 
 	virtualDiff.line = `+` + strings.Repeat("a", 1000000) + "\n" // 1MB
 	virtualDiff.lineRepeats = 1
-	// total diff size is 1TB
 	virtualDiff.diffFileRepeats = 1
 
 	// first, run without contentHandler
